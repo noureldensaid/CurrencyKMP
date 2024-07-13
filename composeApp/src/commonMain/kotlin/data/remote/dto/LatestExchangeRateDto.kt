@@ -24,7 +24,7 @@ data class Currency(
     val value: Double
 )
 
-fun LatestExchangeRateDto.toLatestExchangeRateModel() = LatestExchangeRateModel(
+fun LatestExchangeRateDto.toModel() = LatestExchangeRateModel(
     lastUpdatedAt = meta.lastUpdatedAt,
     currencies = data.mapValues { CurrencyModel(it.value.code, it.value.value) }
 )
