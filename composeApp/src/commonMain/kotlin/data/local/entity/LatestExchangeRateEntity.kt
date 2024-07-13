@@ -1,5 +1,6 @@
 package data.local.entity
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -7,7 +8,8 @@ import androidx.room.PrimaryKey
 data class LatestExchangeRateEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val lastUpdatedAt: String,
-    val currencies: Map<String, CurrencyEntity>
+//    @Embedded
+//    val currencies: Map<String, CurrencyEntity>
 )
 
 @Entity

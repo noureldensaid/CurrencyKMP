@@ -1,8 +1,10 @@
 package domain.repository
 
-import common.RequestState
 import domain.models.LatestExchangeRateModel
+import util.Error
+import util.NetworkError
+import util.Result
 
 interface Repository {
-    suspend fun getLatestExchangeRates(): RequestState<LatestExchangeRateModel>
+    suspend fun getLatestExchangeRates(): Result<LatestExchangeRateModel, Error>
 }

@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import di.initKoin
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
 import presentation.HomeViewModel
@@ -18,7 +17,6 @@ import presentation.HomeViewModel
 @Composable
 @Preview
 fun App() {
-    initKoin()
     MaterialTheme {
         val viewModel: HomeViewModel = koinInject()
         Column(

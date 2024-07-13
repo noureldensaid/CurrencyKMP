@@ -1,7 +1,8 @@
 package di
 
-import common.Constants.API_KEY
+import util.Constants.API_KEY
 import data.remote.ApiService
+import data.remote.createKtorClient
 import data.repository.RepositoryImpl
 import domain.repository.Repository
 import io.ktor.client.HttpClient
@@ -14,35 +15,27 @@ import io.ktor.client.request.headers
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.compose.viewmodel.dsl.viewModel
+import org.koin.core.context.startKoin
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import presentation.HomeViewModel
 
+fun initKoin(config: KoinAppDeclaration? = null) {
+    startKoin {
+        config?.invoke(this)
+        modules(appModule)
+    }
+}
+
 val appModule = module {
     single {
-        HttpClient {
-            install(ContentNegotiation) {
-                json(Json {
-                    prettyPrint = true
-                    isLenient = true
-                    ignoreUnknownKeys = true
-                })
-            }
-            install(HttpTimeout) {
-                requestTimeoutMillis = 15000
-            }
-            install(Logging) {
-                level = LogLevel.BODY
-            }
-            install(DefaultRequest) {
-                headers {
-                    append("apikey", API_KEY)
-                }
-            }
-        }
+        createKtorClient()
     }
     single { ApiService(get()) }
-    single { RepositoryImpl(get()) }.bind<Repository>()
-     viewModel { HomeViewModel(get()) }
+    singleOf(::RepositoryImpl).bind(Repository::class)
+    viewModel { HomeViewModel(get()) }
 
 }
+

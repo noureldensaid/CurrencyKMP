@@ -1,6 +1,6 @@
 package data.remote
 
-import common.Constants.ENDPOINT
+import util.Constants.ENDPOINT
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 

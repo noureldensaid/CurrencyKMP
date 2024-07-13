@@ -1,4 +1,4 @@
-package common
+package util
 
 object Constants {
     const val ENDPOINT = "https://api.currencyapi.com/v3/latest"
