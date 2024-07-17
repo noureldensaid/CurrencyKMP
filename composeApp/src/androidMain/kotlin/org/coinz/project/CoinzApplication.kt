@@ -1,7 +1,7 @@
 package org.coinz.project
 
 import android.app.Application
-import di.initKoin
+import org.coinz.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.component.KoinComponent
