@@ -17,6 +17,7 @@ lifecycleViewmodelCompose = "2.8.0"
 navigationCompose = "2.7.0-alpha07"
 ktor = "2.3.12"
 coroutines = "1.8.1"
+date-time = "0.5.0"
 
 
 room = "2.7.0-alpha02"
@@ -71,6 +72,7 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinComposeMultiplatform" }
 koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinComposeMultiplatform" }
 stately-common = { module = "co.touchlab:stately-common", version.ref = "statelyCommon" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "date-time" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
