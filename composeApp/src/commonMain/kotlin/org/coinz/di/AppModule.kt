@@ -2,7 +2,9 @@ package org.coinz.di
 
 import org.coinz.data.remote.ApiService
 import org.coinz.data.remote.createKtorClient
+import org.coinz.data.repository.DataStoreRepositoryImpl
 import org.coinz.data.repository.RepositoryImpl
+import org.coinz.domain.repository.DataStoreRepository
 import org.coinz.domain.repository.Repository
 import org.coinz.domain.useCases.FetchDataUseCase
 import org.koin.compose.viewmodel.dsl.viewModel
@@ -16,7 +18,7 @@ import org.coinz.presentation.home.viewmodel.HomeViewModel
 fun initKoin(config: KoinAppDeclaration? = null) {
     startKoin {
         config?.invoke(this)
-        modules(appModule,platformModule)
+        modules(appModule, platformModule)
     }
 }
 
@@ -25,12 +27,21 @@ val appModule = module {
         createKtorClient()
     }
     single { ApiService(get()) }
+
     singleOf(::RepositoryImpl).bind(Repository::class)
-    viewModel { HomeViewModel(get(),get()) }
+
+    singleOf(::DataStoreRepositoryImpl).bind(DataStoreRepository::class)
+
+    viewModel { HomeViewModel(get()) }
 
 
-    single {FetchDataUseCase(get())}
-
+    single {
+        FetchDataUseCase(
+            get(),
+            get(),
+            get(),
+        )
+    }
 
 
 }

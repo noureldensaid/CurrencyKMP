@@ -13,13 +13,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.coinz.presentation.home.viewmodel.HomeViewModel
+import org.coinz.presentation.theme.CoinzTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
 
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
+    CoinzTheme {
         val viewModel: HomeViewModel = koinInject()
         Column(
             Modifier.fillMaxSize().padding(16.dp),

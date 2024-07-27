@@ -11,3 +11,8 @@ enum class NetworkError() : Error {
     SERIALIZATION,
     UNKNOWN;
 }
+
+
+enum class DataBaseError() : Error {
+    NOT_FOUND,
+ }

@@ -20,6 +20,8 @@ class RepositoryImpl(
         val dao = currencyDatabase.currencyDao()
         if (response is Result.Success) {
             dao.insertLatestExchangeRate(response.data.toEntity())
+
+
         }
         return response.map {
             it.toModel()
